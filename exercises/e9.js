@@ -5,10 +5,10 @@ import { data } from "../data/data";
 // Return example: { key1: value1, key2: value2, ... , keyN: valueN }
 
 export function getEarthData(data) {
-  // Your code goes here...
+  let getEarth = data.planets.filter((planet) => planet.name === "Earth");
+
+  return getEarth[0];
 }
-
-
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-9"

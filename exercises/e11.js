@@ -6,7 +6,10 @@ import { data } from "../data/data";
 // Return example: ['name1', 'name2', ... , 'nameN']
 
 export function lowMoonsPlanets(data) {
-  // Your code goes here...
+  let planetsWithMoons = data.planets.filter(
+    (planet) => planet.moons?.length < 10 || !planet.moons
+  );
+  return planetsWithMoons.map((planet) => planet.name);
 }
 
 // === TEST YOURSELF ===

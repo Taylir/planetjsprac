@@ -5,10 +5,24 @@ import { data } from "../data/data";
 // Return example: 42
 
 export function allPlanetsMoonsCount(data) {
-  // Your code goes here...
+  let planetsWithMoons = data.planets.filter((planet) => planet.moons);
+  planetsWithMoons.map((planet) => (planet.moons = planet.moons.length));
+  let moonCount = planetsWithMoons.map((planet) => planet.moons);
+  let totalMoonCount = moonCount.reduce((acc, value) => acc + value);
+
+  return totalMoonCount;
+
+  //Question for Jon, Bring up in learning time with jon:
+  //Question: Why does the top function work but the chaining down below does now?
+  //Had a lot of odd issues with moon in genereal getting undefined and such
+  // May have figured it out in future questions, will still ask to understand better
+
+  // let planetsWithMoons = data.planets
+  //   .filter((planet) => planet.moons)
+  //   .map((planet) => (planet.moons = planet.moons.length));
+  // let moonCount = planetsWithMoons.map((planet) => planet.moons);
+  // let totalMoonCount = moonCount.reduce((acc, value) => acc + value);
 }
-
-
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-12"

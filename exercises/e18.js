@@ -5,8 +5,24 @@
  */
 
 export function getGreatestDiscoveryYear(data) {
-  // Your code goes here...
-  // feel free to import your `maxBy` or `minBy` methods from previous lessons
+  let yearMap = new Map();
+  let dYear = data.asteroids.map((asteroid) => asteroid.discoveryYear);
+
+  for (let ast of dYear) {
+    if (!yearMap.has(ast)) {
+      yearMap.set(ast, 1);
+    } else {
+      yearMap.set(ast, yearMap.get(ast) + 1);
+    }
+  }
+  let keyValueAsteroid = { max: 0, year: 0 };
+  yearMap.forEach((asteroid, i) => {
+    if (asteroid > keyValueAsteroid.max) {
+      keyValueAsteroid.max = asteroid;
+      keyValueAsteroid.year = i;
+    }
+  });
+  return keyValueAsteroid.year;
 }
 
 // === TEST YOURSELF ===
