@@ -7,21 +7,27 @@
 export function getGreatestDiscoveryYear(data) {
   let yearMap = new Map();
   let dYear = data.asteroids.map((asteroid) => asteroid.discoveryYear);
-
-  for (let ast of dYear) {
-    if (!yearMap.has(ast)) {
-      yearMap.set(ast, 1);
-    } else {
-      yearMap.set(ast, yearMap.get(ast) + 1);
-    }
-  }
   let keyValueAsteroid = { max: 0, year: 0 };
-  yearMap.forEach((asteroid, i) => {
-    if (asteroid > keyValueAsteroid.max) {
-      keyValueAsteroid.max = asteroid;
-      keyValueAsteroid.year = i;
+
+  dYear.map((year) => {
+    if (yearMap.has(year)) {
+      yearMap.set(year, yearMap.get(year) + 1);
+      if (yearMap.get(year) > keyValueAsteroid.max) {
+        keyValueAsteroid.max = yearMap.get(year);
+        keyValueAsteroid.year = year;
+      }
+    } else {
+      yearMap.set(year, 1);
     }
   });
+
+  //Oops used a forEach the first time
+  // yearMap.forEach((asteroid, i) => {
+  //   if (asteroid > keyValueAsteroid.max) {
+  //     keyValueAsteroid.max = asteroid;
+  //     keyValueAsteroid.year = i;
+  //   }
+  // });
   return keyValueAsteroid.year;
 }
 
